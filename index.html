@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Milagro</title>
+<style>
+:root{
+  --bg:#fff4f1; --card:#ffffff; --text:#4a2c2f; --soft:#8a6a6d; --accent:#e0556b; --accent2:#f4a6b3;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1f1416; --card:#2b1c1f; --text:#fbe9ec; --soft:#c9a3a9; --accent:#ff7a90; --accent2:#7a3d49;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1f1416; --card:#2b1c1f; --text:#fbe9ec; --soft:#c9a3a9; --accent:#ff7a90; --accent2:#7a3d49;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100%;background:var(--bg);color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;overflow-x:hidden;position:relative;
+}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.hearts span{
+  position:absolute;bottom:-40px;color:var(--accent2);opacity:.7;
+  animation:up linear infinite;
+}
+@keyframes up{to{transform:translateY(-110vh) rotate(20deg);opacity:0}}
+.card{
+  position:relative;z-index:1;width:100%;max-width:420px;text-align:center;
+  background:var(--card);border-radius:24px;padding:36px 26px;
+  box-shadow:0 10px 40px rgba(224,85,107,.18);
+}
+h1{font-size:2rem;margin:0 0 6px;color:var(--accent);font-weight:normal}
+p{line-height:1.6;margin:12px 0;font-size:1.08rem}
+.sub{color:var(--soft);font-style:italic}
+button{
+  margin-top:18px;font:inherit;font-size:1.1rem;color:#fff;background:var(--accent);
+  border:0;border-radius:999px;padding:14px 30px;cursor:pointer;
+}
+button:active{transform:scale(.97)}
+#msg{display:none}
+#msg.show{display:block;animation:fade 1.2s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.big{font-size:2.4rem;color:var(--accent);margin:18px 0 6px}
+.sign{margin-top:22px;color:var(--soft)}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<main class="card">
+  <div id="intro">
+    <h1>Milagro</h1>
+    <p class="sub">Hay cosas que me cuesta decir con la voz, así que las escribí aquí.</p>
+    <button id="open">Ábrelo ♥</button>
+  </div>
+  <div id="msg">
+    <p>A veces decir lo que uno siente es lo más difícil. A mí me cuesta, pero contigo quiero intentarlo.</p>
+    <div class="big">Te amo, Milagro</div>
+    <p>Gracias por ser parte de mi vida. Eres un regalo, y tu nombre te queda perfecto.</p>
+    <p class="sign">Con todo mi cariño,<br>Jesús</p>
+  </div>
+</main>
+<script>
+var box=document.getElementById("hearts");
+for(var i=0;i<14;i++){
+  var s=document.createElement("span");
+  s.textContent="♥";
+  s.style.left=Math.random()*100+"%";
+  s.style.fontSize=(14+Math.random()*22)+"px";
+  s.style.animationDuration=(7+Math.random()*7)+"s";
+  s.style.animationDelay=(-Math.random()*10)+"s";
+  box.appendChild(s);
+}
+document.getElementById("open").addEventListener("click",function(){
+  document.getElementById("intro").style.display="none";
+  document.getElementById("msg").className="show";
+});
+</script>
+</body>
+</html>
